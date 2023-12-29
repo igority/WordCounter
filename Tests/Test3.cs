@@ -10,22 +10,22 @@ namespace Tests
         [TestMethod]
         public async Task Test3_WordCounter()
         {
-            string workingDirectory = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\TestingFolders\test3");
+            string workingDirectory = @$"{Environment.CurrentDirectory}\..\..\..\..\TestingFolders\test3";
             await WordCounter.Program.Main(new string[] { workingDirectory });
         }
         
         [TestMethod]
         public async Task Test3_WordCounter_Alternative()
         {
-            string workingDirectory = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\TestingFolders\test3");
+            string workingDirectory = @$"{Environment.CurrentDirectory}\..\..\..\..\TestingFolders\test3";
             await WordCounter_Alternative.Program.Main(new string[] { workingDirectory });
         }
         
         [TestMethod]
         public async Task Test3_WordCounter_SingleThread()
         {
-            string workingDirectory = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\TestingFolders\test3");
-             await WordCounter_SingleThread.Program.Main(new string[] { workingDirectory });
+            string workingDirectory = @$"{Environment.CurrentDirectory}\..\..\..\..\TestingFolders\test3";
+            await WordCounter_SingleThread.Program.Main(new string[] { workingDirectory });
         }
 
     }

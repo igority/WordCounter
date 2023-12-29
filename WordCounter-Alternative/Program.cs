@@ -11,6 +11,8 @@ namespace WordCounter_Alternative
 {
     public class Program
     {
+        private const string DEFAULT_DIRECTORY_RELATIVE_PATH = @"\..\..\..\..\TestingFolders\test1";
+
         private static ConcurrentDictionary<string, int> _wordCountResult;
 
         public static async Task Main(string[] args)
@@ -25,7 +27,7 @@ namespace WordCounter_Alternative
             var directoryInput = Console.ReadLine();
             return !string.IsNullOrEmpty(directoryInput?.Trim())
                 ? directoryInput
-                : @$"{Environment.CurrentDirectory}..\..\..\..\..\TestingFolders\test1";
+                : $"{Environment.CurrentDirectory}{DEFAULT_DIRECTORY_RELATIVE_PATH}";
         }
 
         private static async Task ProcessFilesAndOutput(string workingDirectory)
@@ -57,7 +59,7 @@ namespace WordCounter_Alternative
             }
             Console.WriteLine($"Processing {filePaths.Length} file(s)...");
 
-            var lineTasks = new ConcurrentQueue<Task>();
+            var lineTasks = new ConcurrentBag<Task>();
 
             var fileTasks = filePaths.Select(filePath =>
             {
@@ -66,7 +68,7 @@ namespace WordCounter_Alternative
                     var lineTasksPerFile = await LineTasks(filePath);
                     foreach (var lineTask in lineTasksPerFile)
                     {
-                        lineTasks.Append(lineTask);
+                        lineTasks.Add(lineTask);
                     }
                 });
 

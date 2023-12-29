@@ -1,11 +1,12 @@
-﻿using System.Collections.Concurrent;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
 namespace WordCounter_SingleThread
 {
     public class Program
     {
+        private const string DEFAULT_DIRECTORY_RELATIVE_PATH = @"\..\..\..\..\TestingFolders\test1";
+
         private static Dictionary<string, int> _wordCountResult = new();
 
         public static async Task Main(string[] args)
@@ -20,7 +21,7 @@ namespace WordCounter_SingleThread
             string? directoryInput = Console.ReadLine();
             return !string.IsNullOrEmpty(directoryInput?.Trim())
                 ? directoryInput
-                : @$"{Environment.CurrentDirectory}..\..\..\..\..\TestingFolders\test1";
+                : $"{Environment.CurrentDirectory}{DEFAULT_DIRECTORY_RELATIVE_PATH}";
         }
 
         private static async Task ProcessFilesAndOutput(string workingDirectory)

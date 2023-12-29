@@ -10,6 +10,8 @@ namespace WordCounter
         private const int MAX_CONCURRENT_FILES = int.MaxValue;
         private const int MAX_CONCURRENT_LINES_PER_FILE = int.MaxValue;
 
+        private const string DEFAULT_DIRECTORY_RELATIVE_PATH = @"\..\..\..\..\TestingFolders\test1";
+
         private static ConcurrentDictionary<string, int> _wordCountResult = new();
 
         public static async Task Main(string[] args)
@@ -24,7 +26,7 @@ namespace WordCounter
             string? directoryInput = Console.ReadLine();
             return !string.IsNullOrEmpty(directoryInput?.Trim())
                 ? directoryInput
-                : @$"{Environment.CurrentDirectory}..\..\..\..\..\TestingFolders\test1";
+                : $"{Environment.CurrentDirectory}{DEFAULT_DIRECTORY_RELATIVE_PATH}";
         }
 
         private static async Task ProcessFilesAndOutput(string workingDirectory)
